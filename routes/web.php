@@ -1,5 +1,7 @@
 <?php
 
+use App\Post;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,4 +15,34 @@
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/about', function () {
+    return view('about');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+Route::get('/about/team', function () {
+    return view('team');
+});
+
+Route::get('/about/location', function () {
+    return view('location');
+});
+
+Route::get('/posts', function () {
+    $posts = Post::all();
+
+    return view('posts', [
+        'posts' => $posts
+    ]);
+});
+
+Route::get('/posts/{post}', function (Post $post) {
+    return view('post', [
+        'post' => $post
+    ]);
 });
